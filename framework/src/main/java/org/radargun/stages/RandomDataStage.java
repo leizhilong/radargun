@@ -59,7 +59,7 @@ public class RandomDataStage extends AbstractDistStage {
 
    @Property(doc = "The seed to use for the java.util.Random object. "
          + "The default is the return value of Calendar.getInstance().getWeekYear().")
-   private long randomSeed = Calendar.getInstance().getWeekYear();
+   private long randomSeed = Calendar.getInstance().get(Calendar.WEEK_OF_YEAR);
 
    @Property(doc = "The size of the values to put into the cache. The default size is 1MB (1024 * 1024).")
    private int valueSize = 1024 * 1024;

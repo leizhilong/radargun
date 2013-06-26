@@ -23,6 +23,7 @@
          <outputDirectory>conf</outputDirectory>
          <excludes>
             <exclude>*assembly*</exclude>
+            <exclude>*script*</exclude>
             <exclude>**/*.sh</exclude>
             <exclude>**/*.bat</exclude>
             <exclude>**/*.cmd</exclude>
@@ -39,6 +40,16 @@
             <include>**/*.bat</include>
             <include>**/*.cmd</include>
             <include>**/*.py</include>
+         </includes>
+         <fileMode>0755</fileMode>
+      </fileSet>
+      
+      <!-- Copy script for startting & stopping to root dir -->
+      <fileSet>
+         <directory>src/main/resources/script</directory>
+         <outputDirectory>.</outputDirectory>
+         <includes>
+            <include>**/*.sh</include>
          </includes>
          <fileMode>0755</fileMode>
       </fileSet>

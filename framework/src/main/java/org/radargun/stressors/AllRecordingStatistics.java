@@ -112,7 +112,7 @@ public class AllRecordingStatistics implements Statistics {
       return computeRanges(buckets, false, new Comparator<Request>() {
          @Override
          public int compare(Request r1, Request r2) {
-            return Long.compare(r1.responseTime, r2.responseTime);
+            return new Long(r1.responseTime).compareTo( new Long(r2.responseTime ));
          }
       });
    }
@@ -121,7 +121,7 @@ public class AllRecordingStatistics implements Statistics {
       return computeRanges(buckets, true, new Comparator<Request>() {
          @Override
          public int compare(Request r1, Request r2) {
-            return Long.compare(r1.responseWithTx, r2.responseWithTx);
+            return new Long(r1.responseWithTx).compareTo(new Long( r2.responseWithTx ));
          }
       });
    }
