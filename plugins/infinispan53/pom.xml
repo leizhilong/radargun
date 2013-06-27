@@ -14,7 +14,7 @@
    <name>Infinispan 5.3.x plugin for RadarGun</name>
 
    <properties>
-      <version.infinispan>5.3.0.CR2</version.infinispan>
+      <version.infinispan>5.3.0.Final</version.infinispan>
       <version.jbossts>4.16.3.Final</version.jbossts>
    </properties>
 
