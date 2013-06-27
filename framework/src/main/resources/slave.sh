@@ -72,7 +72,7 @@ add_fwk_to_classpath
 set_env
 
 if [ -n "$SLAVE_NAME" ] ; then
-  LOG4J_PREFIX=$SLAVE_NAME
+  LOG4J_PREFIX=$SLAVE_NAME-$RANDOM
 
   # The slave_BIND_ADDRESS variable may be defined in environment.sh
   eval MY_BIND_ADDRESS=\$${SLAVE_NAME}_BIND_ADDRESS
@@ -88,3 +88,9 @@ echo "--------------------------------------------------------------------------
 nohup ${JAVA} ${JVM_OPTS} ${D_VARS} -classpath $CP org.radargun.Slave ${CONF} >> stdout_slave_${LOG4J_PREFIX}.out 2>&1 &
 echo "... done! Slave process started on host ${HOSTNAME}!"
 echo ""
+
+sleep 3
+tail -f ${LOG4J_PREFIX}_radargun.log
+
+
+s
