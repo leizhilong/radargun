@@ -23,3 +23,10 @@ scp ./plugins/infinispan53/src/main/resources/transaction-dist-sync.xml  infinis
 scp ./plugins/infinispan53/src/main/resources/transaction-dist-sync.xml  infinispan@172.17.254.232:/home/infinispan/RadarGun-1.1.0-SNAPSHOT/plugins/infinispan53/conf/transaction-dist-sync.xml
 scp ./plugins/infinispan53/src/main/resources/transaction-dist-sync.xml  infinispan@172.17.254.233:/home/infinispan/RadarGun-1.1.0-SNAPSHOT/plugins/infinispan53/conf/transaction-dist-sync.xml
 scp ./plugins/infinispan53/src/main/resources/transaction-dist-sync.xml  infinispan@172.17.254.234:/home/infinispan/RadarGun-1.1.0-SNAPSHOT/plugins/infinispan53/conf/transaction-dist-sync.xml
+
+echo "distribuiting jgroups config file..."
+scp ./plugins/infinispan53/src/main/resources/jgroups/jgroups.xml infinispan@172.17.254.230:/home/infinispan/RadarGun-1.1.0-SNAPSHOT/plugins/infinispan53/conf/jgroups/jgroups.xml 
+scp ./plugins/infinispan53/src/main/resources/jgroups/jgroups.xml infinispan@172.17.254.231:/home/infinispan/RadarGun-1.1.0-SNAPSHOT/plugins/infinispan53/conf/jgroups/jgroups.xml 
+scp ./plugins/infinispan53/src/main/resources/jgroups/jgroups.xml infinispan@172.17.254.232:/home/infinispan/RadarGun-1.1.0-SNAPSHOT/plugins/infinispan53/conf/jgroups/jgroups.xml 
+scp ./plugins/infinispan53/src/main/resources/jgroups/jgroups.xml infinispan@172.17.254.233:/home/infinispan/RadarGun-1.1.0-SNAPSHOT/plugins/infinispan53/conf/jgroups/jgroups.xml 
+scp ./plugins/infinispan53/src/main/resources/jgroups/jgroups.xml infinispan@172.17.254.234:/home/infinispan/RadarGun-1.1.0-SNAPSHOT/plugins/infinispan53/conf/jgroups/jgroups.xml 
