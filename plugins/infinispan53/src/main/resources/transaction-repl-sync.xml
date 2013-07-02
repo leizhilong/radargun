@@ -17,7 +17,7 @@
  
         <locking concurrencyLevel="1000" useLockStriping="false" isolationLevel="REPEATABLE_READ" writeSkewCheck="true"/> 
         
-        <versioning enabled="true" type="SIMPLE"useTombstones="false" tombstoneLifespan="60000" />
+        <versioning enabled="true" versioningScheme="SIMPLE"/>
         
         <!-- writeSkewCheck="false" for the no write skew experiments -->
         
