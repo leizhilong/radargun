@@ -5,7 +5,7 @@
          This will average to 10000 requests per thread, although a work-stealing pattern is used so some threads may
          do more work than others.
        -->
-      <StressTest numRequests="25000000" opsCountStatusLog="10000" numThreads="25" sysMonitorEnabled="true"/>
+      <StressTest numRequests="25000000" opsCountStatusLog="100000" numThreads="25" sysMonitorEnabled="true"/>
    </benchmark>
    <products>
       <infinispan53>

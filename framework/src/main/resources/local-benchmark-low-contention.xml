@@ -3,7 +3,7 @@
    <benchmark>
       <Warmup operationCount="5000000"/>
       <!-- LOW contention.  25 threads working on 100,000 million keys. -->
-      <StressTest numRequests="10000000" opsCountStatusLog="100000" numThreads="25" sysMonitorEnabled="true" numEntries="100000" sharedKeys="true"/>
+      <StressTest numRequests="25000000" opsCountStatusLog="100000" numThreads="25" sysMonitorEnabled="true" numEntries="100000" sharedKeys="true"/>
    </benchmark>
 
    <products>
