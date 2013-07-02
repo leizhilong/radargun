@@ -7,15 +7,9 @@
    </benchmark>
 
    <products>
-      <infinispan50>
+      <infinispan53>
          <config name="local-config.xml" cache="x"/>
-      </infinispan50>
-      <infinispan51>
-         <config name="local-config.xml" cache="x"/>
-      </infinispan51>
-      <infinispan52>
-         <config name="local-config.xml" cache="x"/>
-      </infinispan52>
+      </infinispan53>
    </products>
 
    <reports>
