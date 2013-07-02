@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:infinispan:config:5.3">
+   <global>
+        <transport clusterName="x">
+            <properties>
+                <property name="configurationFile" value="jgroups/jgroups.xml"/>
+            </properties>
+        </transport>
+    </global>
+    <default>
+        <transaction
+                transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"
+                transactionMode="TRANSACTIONAL"
+                transactionProtocol="TOTAL_ORDER"> <!-- transactionProtocol="DEFAULT" for the locking model -->
+            <recovery enabled="false"/>
+        </transaction>
+ 
+        <locking concurrencyLevel="1000" useLockStriping="false" isolationLevel="REPEATABLE_READ" writeSkewCheck="true"/> 
+        
+        <versioning enabled="true" type="SIMPLE"useTombstones="false" tombstoneLifespan="60000" />
+        
+        <!-- writeSkewCheck="false" for the no write skew experiments -->
+        
+        <clustering mode="r"> 
+        <!-- mode="d" for distributed mode -->
+	        <sync replTimeout="10000"/>
+	        <stateTransfer fetchInMemoryState="false"/>
+	        <hash numOwners="2" /> <!-- for distributed mode only -->
+        </clustering>
+    </default>
+    <namedCache name="testCache"/>
+</infinispan>

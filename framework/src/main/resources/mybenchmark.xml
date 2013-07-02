@@ -1,54 +1,54 @@
 <bench-config xmlns="urn:radargun:benchmark:1.1">
 
-   <master bindAddress="${127.0.0.1:master.address}" port="${2103:master.port}"/>
+	<master bindAddress="${127.0.0.1:master.address}" port="${2103:master.port}" />
 
-    <benchmark initSize="2" maxSize="${10:slaves}" increment="2">
-        <DestroyWrapper runOnAllSlaves="true"/>
-        <StartCluster staggerSlaveStartup="true" delayAfterFirstSlaveStarts="5000" delayBetweenStartingSlaves="500"/>
-        <ClusterValidation partialReplication="false"/>
-        <StressTestWarmup duration="1m" opsCountStatusLog="5000" numThreads="8" transactionSize="10"
-                          useTransactions="true" writePercentage="50" numEntries="1000" sharedKeys="false"/>
-        <StressTest duration="5m" opsCountStatusLog="5000" numThreads="8" transactionSize="10"
-                    useTransactions="true" writePercentage="50" numEntries="1000" sharedKeys="false"/>
-        <CsvReportGeneration targetDir="no_contention"/>
-        <ClearCluster/>
-        <StressTestWarmup duration="1m" opsCountStatusLog="5000" numThreads="8" transactionSize="10"
-                          useTransactions="true" writePercentage="50" numEntries="1000" sharedKeys="true"/>
-        <StressTest duration="5m" opsCountStatusLog="5000" numThreads="8" transactionSize="10"
-                    useTransactions="true" writePercentage="50" numEntries="1000" sharedKeys="true"/>
-        <CsvReportGeneration targetDir="contention"/>
-    </benchmark>
+	<benchmark initSize="1" maxSize="${2:slaves}" increment="1">
+		<DestroyWrapper runOnAllSlaves="true" />
+		<StartCluster staggerSlaveStartup="true"
+			delayAfterFirstSlaveStarts="5000" delayBetweenStartingSlaves="500" />
+		<ClusterValidation partialReplication="false" />
+		<StressTestWarmup duration="30s" opsCountStatusLog="5000"
+			numThreads="8" transactionSize="10" useTransactions="true"
+			writePercentage="50" numEntries="1000" sharedKeys="false" />
+		<StressTest duration="2m" opsCountStatusLog="5000"
+			numThreads="8" transactionSize="10" useTransactions="true"
+			writePercentage="50" numEntries="1000" sharedKeys="false" />
+		<CsvReportGeneration targetDir="no_contention" />
+		<ClearCluster />
+		<StressTestWarmup duration="30s" opsCountStatusLog="5000"
+			numThreads="8" transactionSize="10" useTransactions="true"
+			writePercentage="50" numEntries="1000" sharedKeys="true" />
+		<StressTest duration="2m" opsCountStatusLog="5000"
+			numThreads="8" transactionSize="10" useTransactions="true"
+			writePercentage="50" numEntries="1000" sharedKeys="true" />
+		<CsvReportGeneration targetDir="contention" />
+	</benchmark>
 
-   <products>
-      <infinispan52>
-         <config name="repl-sync.xml"/>
-         <config name="dist-sync.xml"/>
-      </infinispan52>
-      <infinispan53>
-         <config name="local-config.xml"/>
-         <config name="transaction-config.xml"/>
-      </infinispan53>
-      <!--
-      <jbosscache3>
-         <config name="mvcc/mvcc-repl-sync.xml"/>
-      </jbosscache3>
-      -->
-   </products>
+	<products>
+		<!-- <infinispan52> <config name="repl-sync.xml"/> <config name="dist-sync.xml"/> 
+			</infinispan52> -->
+		<infinispan53>
+			<config name="transaction-dist-sync.xml" cache="testCache" />
+			<config name="transaction-repl-sync.xml" cache="testCache" />
+			<!-- <config name="transaction-config.xml"/> -->
+		</infinispan53>
+		<!-- <jbosscache3> <config name="mvcc/mvcc-repl-sync.xml"/> </jbosscache3> -->
+	</products>
 
-   <reports>
-      <report name="Replicated">
-         <item product="infinispan52" config="repl-sync.xml"/>
-         <item product="infinispan53" config="repl-sync.xml"/>
-         <!-- 
-         <item product="jbosscache3" config="*"/>
-          -->
-      </report>
-      <report name="DistVsRepl">
-         <item product="infinispan52" config="repl-sync.xml"/>
-         <item product="infinispan52" config="dist-sync.xml"/>
-         <item product="infinispan53" config="transaction-config.xml"/>
-      </report>
-      <report name="All" includeAll="true"/>
-   </reports>
+	<reports>
+		<report name="Replicated">
+			<!-- <item product="infinispan52" config="repl-sync.xml"/> -->
+			<item product="infinispan53" config="transaction-repl-sync.xml" />
+			
+			<!-- <item product="jbosscache3" config="*"/> -->
+		</report>
+		<report name="Dist">
+		      <item product="infinispan53" config="transaction-dist-sync.xml"/>
+		</report>
+		<!-- <report name="DistVsRepl"> <item product="infinispan52" config="repl-sync.xml"/> 
+			<item product="infinispan52" config="dist-sync.xml"/> <item product="infinispan53" 
+			config="local-config.xml"/> </report> -->
+		<report name="All" includeAll="true" />
+	</reports>
 
 </bench-config>

@@ -15,11 +15,17 @@
             <recovery enabled="false"/>
         </transaction>
  
-        <locking concurrencyLevel="1000" useLockStriping="false" isolationLevel="REPEATABLE_READ" writeSkewCheck="true"/> <!-- writeSkewCheck="false" for the no write skew experiments -->
-        <clustering mode="r"> <!-- mode="d" for distributed mode -->
-            <sync replTimeout="10000"/>
-            <stateTransfer fetchInMemoryState="false"/>
-            <hash numOwners="2" /> <!-- for distributed mode only -->
+        <locking concurrencyLevel="1000" useLockStriping="false" isolationLevel="REPEATABLE_READ" writeSkewCheck="true"/> 
+        
+        <versioning enabled="true" type="SIMPLE"useTombstones="false" tombstoneLifespan="60000" />
+        
+        <!-- writeSkewCheck="false" for the no write skew experiments -->
+        
+        <clustering mode="d"> 
+        <!-- mode="d" for distributed mode -->
+	        <sync replTimeout="10000"/>
+	        <stateTransfer fetchInMemoryState="false"/>
+	        <hash numOwners="2" /> <!-- for distributed mode only -->
         </clustering>
     </default>
     <namedCache name="testCache"/>
