@@ -37,10 +37,8 @@
         thread_naming_pattern="pl"
         max_bundle_size="64000"
         max_bundle_timeout="30"
-        enable_bundling="true"
         enable_diagnostics="false"
         bundler_type="old"
-
         thread_pool.enabled="true"
         thread_pool.min_threads="${jgroups.thread_pool.min_threads:4}"
         thread_pool.max_threads="${jgroups.thread_pool.max_threads:128}"
@@ -57,11 +55,7 @@
         oob_thread_pool.queue_max_size="100"
         oob_thread_pool.rejection_policy="Discard"
         />
-   
-   <!-- To use Total Order based commit protocol -->
-   <SEQUENCER />
-   <tom.TOA />
-   
+
    <PING timeout="3000" num_initial_members="3"/>
    <MERGE2 max_interval="30000" min_interval="10000"/>
    <FD_SOCK/>

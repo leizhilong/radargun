@@ -11,7 +11,11 @@
         <transaction
                 transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"
                 transactionMode="TRANSACTIONAL"
-                transactionProtocol="TOTAL_ORDER"> <!-- transactionProtocol="DEFAULT" for the locking model -->
+                <!-- 
+                transactionProtocol="TOTAL_ORDER">
+                 -->
+                 transactionProtocol="DEFAULT"
+                  <!-- transactionProtocol="DEFAULT" for the locking model -->
             <recovery enabled="false"/>
         </transaction>
  
