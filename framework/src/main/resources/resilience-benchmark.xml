@@ -7,7 +7,7 @@
 		<StartCluster staggerSlaveStartup="true" delayAfterFirstSlaveStarts="5000" delayBetweenStartingSlaves="500" />
 		<ClusterValidation partialReplication="false" />
 		
-		<StartBackgroundStressors numThreads="50" numEntries="10000" entrySize="1024" puts="1" gets="2" delayBetweenRequests="10"/>
+		<StartBackgroundStressors numThreads="25" numEntries="10000" entrySize="1024" gets="3" puts="4"  removes="5" delayBetweenRequests="100"/>
         <StartBackgroundStatistics statsIterationDuration="500"/>
         
 		<Sleep time="20000" />
@@ -18,7 +18,7 @@
 		<Kill slaves="3" />
 		<Sleep time="10000" />
 		<Kill slaves="4" />
-        <Sleep time="10000" />
+        <Sleep time="20000" />
 		<StartCluster slaves="4" staggerSlaveStartup="false" expectNumSlaves="2" />
 		<Sleep time="10000" />
 		<StartCluster slaves="3" staggerSlaveStartup="false" expectNumSlaves="3" />
