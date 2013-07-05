@@ -18,9 +18,9 @@
         <locking concurrencyLevel="1000" useLockStriping="false" /> 
         
         <clustering mode="d"> 
-            <sync replTimeout="10000"/>
-            <stateTransfer fetchInMemoryState="false"/>
-            <hash numOwners="2" /> 
+	        <async asyncMarshalling="false"/>
+	        <stateTransfer fetchInMemoryState="false"/>
+	        <hash numOwners="2" /> 
         </clustering>
     </default>
     <namedCache name="testCache"/>

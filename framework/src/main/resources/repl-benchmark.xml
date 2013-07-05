@@ -14,7 +14,6 @@
 		<StopJVMMonitor/>
 		<ReportJVMMonitor reportPrefix="jvm"/>
 		<CsvReportGeneration/>
-		<GenerateChart/>
 
 	</benchmark>
 
@@ -22,8 +21,19 @@
 		<infinispan53>
 			<config name="transaction-repl-sync.xml" cache="testCache" />
 			<config name="transaction-repl-async.xml" cache="testCache" />
+			<config name="transaction-dist-sync.xml" cache="testCache" />
+            <config name="transaction-dist-async.xml" cache="testCache" />
 		</infinispan53>
 	</products>
 
-	<reports />
+	<reports>
+		<report name="Replicated">
+			<item product="infinispan53" config="transaction-repl-sync.xml" />
+			<item product="infinispan53" config="transaction-repl-async.xml" />
+		</report>
+		<report name="Distributed">
+			<item product="infinispan53" config="transaction-dist-sync.xml" />
+			<item product="infinispan53" config="transaction-dist-async.xml" />
+		</report>
+	</reports>
 </bench-config>

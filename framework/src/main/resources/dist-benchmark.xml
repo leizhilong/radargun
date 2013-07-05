@@ -1,0 +1,39 @@
+<bench-config xmlns="urn:radargun:benchmark:1.1">
+
+    <master bindAddress="${127.0.0.1:master.address}" port="${2103:master.port}" />
+
+    <benchmark initSize="3" maxSize="${15:slaves}" increment="3">
+        <DestroyWrapper runOnAllSlaves="true" />
+        <StartCluster staggerSlaveStartup="true" delayAfterFirstSlaveStarts="5000" delayBetweenStartingSlaves="500" />
+        <ClusterValidation partialReplication="false" />
+        <StartJVMMonitor runOnAllSlaves="true" />
+        <StressTestWarmup numRequests="5000" opsCountStatusLog="1000" numThreads="25"/>
+        <ClearCluster/>
+        <StressTest duration="2m" entrySize="1024" numEntries="10000" sharedKeys="true" opsCountStatusLog="50000" numThreads="25" />
+        
+        <StopJVMMonitor/>
+        <ReportJVMMonitor reportPrefix="jvm"/>
+        <CsvReportGeneration/>
+
+    </benchmark>
+
+    <products>
+        <infinispan53>
+            <config name="transaction-repl-sync.xml" cache="testCache" />
+            <config name="transaction-repl-async.xml" cache="testCache" />
+            <config name="transaction-dist-sync.xml" cache="testCache" />
+            <config name="transaction-dist-async.xml" cache="testCache" />
+        </infinispan53>
+    </products>
+
+    <reports>
+        <report name="Replicated">
+            <item product="infinispan53" config="transaction-repl-sync.xml" />
+            <item product="infinispan53" config="transaction-repl-async.xml" />
+        </report>
+        <report name="Distributed">
+            <item product="infinispan53" config="transaction-dist-sync.xml" />
+            <item product="infinispan53" config="transaction-dist-async.xml" />
+        </report>
+    </reports>
+</bench-config>
