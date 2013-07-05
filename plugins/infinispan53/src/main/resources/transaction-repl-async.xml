@@ -15,10 +15,10 @@
             <recovery enabled="false"/>
         </transaction>
  
-        <locking concurrencyLevel="1000" useLockStriping="false"/> 
-
+        <locking concurrencyLevel="1000" useLockStriping="false" /> 
+        
         <clustering mode="r"> 
-	        <sync replTimeout="10000"/>
+	        <async asyncMarshalling="false" />
 	        <stateTransfer fetchInMemoryState="false"/>
         </clustering>
     </default>
