@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:infinispan:config:5.3">
+   <global>
+        <transport clusterName="default">
+            <properties>
+                <property name="configurationFile" value="jgroups/jgroups.xml"/>
+            </properties>
+        </transport>
+    </global>
+    <default>
+        <transaction
+                transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"
+                transactionMode="TRANSACTIONAL"
+                transactionProtocol="DEFAULT">
+            <recovery enabled="false"/>
+        </transaction>
+        
+        <locking concurrencyLevel="1000" useLockStriping="false" /> 
+        
+        <clustering mode="d"> 
+            <sync replTimeout="10000"/>
+            <l1 enabled="true" lifespan="10000" />
+            <stateTransfer fetchInMemoryState="false"/>
+            <hash numOwners="2" /> 
+        </clustering>
+    </default>
+    <namedCache name="testCache"/>
+</infinispan>

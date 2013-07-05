@@ -13,7 +13,7 @@
 		
 		<StopJVMMonitor/>
 		<ReportJVMMonitor reportPrefix="jvm"/>
-		<CsvReportGeneration/>
+		<CsvReportGeneration />
 
 	</benchmark>
 
@@ -34,6 +34,8 @@
 		<report name="Distributed">
 			<item product="infinispan53" config="transaction-dist-sync.xml" />
 			<item product="infinispan53" config="transaction-dist-async.xml" />
+			<item product="infinispan53" config="transaction-dist-sync-l1.xml" />
+			<item product="infinispan53" config="transaction-dist-async-l1.xml" />
 		</report>
 	</reports>
 </bench-config>
