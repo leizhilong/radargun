@@ -18,23 +18,23 @@
 
 	<products>
 		<infinispan53>
-			<config name="transaction-repl-sync.xml" cache="testCache" />
-			<config name="transaction-repl-async.xml" cache="testCache" />
 			<config name="transaction-dist-sync.xml" cache="testCache" />
             <config name="transaction-dist-async.xml" cache="testCache" />
+            <config name="transaction-dist-sync-l1.xml" cache="testCache" />
+            <config name="transaction-dist-async-l1.xml" cache="testCache" />
 		</infinispan53>
 	</products>
 
 	<reports>
-		<report name="Replicated">
-			<item product="infinispan53" config="transaction-repl-sync.xml" />
-			<item product="infinispan53" config="transaction-repl-async.xml" />
-		</report>
-		
-		<report name="Distributed">
+		<report name="WITHOUT-L1">
 			<item product="infinispan53" config="transaction-dist-sync.xml" />
 			<item product="infinispan53" config="transaction-dist-async.xml" />
 		</report>
+		<report name="WITH-L1">
+			<item product="infinispan53" config="transaction-dist-sync-l1.xml" />
+			<item product="infinispan53" config="transaction-dist-async-l1.xml" />
+		</report>
 		<report name="All" includeAll="true" />
 	</reports>
+	
 </bench-config>
