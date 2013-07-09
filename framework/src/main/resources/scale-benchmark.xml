@@ -1,0 +1,45 @@
+<bench-config xmlns="urn:radargun:benchmark:1.1">
+
+	<master bindAddress="${127.0.0.1:master.address}" port="${2103:master.port}" />
+
+	<benchmark initSize="5" maxSize="5" increment="1">
+		<DestroyWrapper runOnAllSlaves="true" />
+		
+		<!-- 开始统计 -->
+		<StartBackgroundStatistics statsIterationDuration="1000"/>
+		
+		<!-- 启动2个节点 -->
+		<StartCluster slaves="0,1" staggerSlaveStartup="true" delayAfterFirstSlaveStarts="5000" delayBetweenStartingSlaves="500" />
+		
+		<!-- 启动压力线程，初始25 -->
+		<StartBackgroundStressors numThreads="25" numEntries="10000" entrySize="1024" gets="4" puts="5" delayBetweenRequests="100"/>
+        <Sleep time="20000" />
+        <ClusterValidation slaves="0,1" partialReplication="false" />
+        <Sleep time="40000" />
+        
+        <!-- 增加压力线程，增量25 -->
+        <StartBackgroundStressors numThreads="25" numEntries="10000" entrySize="1024" gets="4" puts="5" delayBetweenRequests="100"/>
+        <Sleep time="20000" />
+        
+        <!-- 补充2节点  -->
+        <StartCluster slaves="2,3" staggerSlaveStartup="true" delayAfterFirstSlaveStarts="5000" delayBetweenStartingSlaves="500" />
+        <Sleep time="40000" />
+		
+		<!-- 停止压力线程 -->
+		<StopBackgroundStressors />
+		<!-- 结束统计 -->
+		<StopBackgroundStatistics />
+		<!-- 生成报告 -->
+		<ReportBackgroundStats generateIntervalTimeData="true"/>
+	</benchmark>
+
+	<products>
+		<infinispan53>
+			<config name="dist-sync-vnodes.xml" cache="x" />
+			<config name="dist-async-vnodes.xml" cache="x" />
+		</infinispan53>
+	</products>
+
+	<reports />
+
+</bench-config>

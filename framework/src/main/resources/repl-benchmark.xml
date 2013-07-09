@@ -9,7 +9,7 @@
 		<StartJVMMonitor runOnAllSlaves="true" />
         <StressTestWarmup numRequests="5000" opsCountStatusLog="1000" numThreads="25"/>
         <ClearCluster/>
-        <StressTest duration="2m" entrySize="1024" numEntries="10000" sharedKeys="true" opsCountStatusLog="50000" numThreads="25" />
+        <StressTest duration="2m" entrySize="1024" numEntries="10000" sharedKeys="true" opsCountStatusLog="50000" numThreads="25"  />
 		
 		<StopJVMMonitor/>
 		<ReportJVMMonitor reportPrefix="jvm"/>
